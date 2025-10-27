@@ -6,7 +6,8 @@ RUN bun install --frozen-lockfile
 RUN bun run build
 RUN bun build --compile "packages/backend/src/bun.index.ts" --outfile dist/nordcraft
 RUN chmod +x dist/nordcraft
-RUN mkdir -p dist/__project__ && cp -r packages/backend/__project__/* dist/__project__/
+RUN mkdir -p dist && bun build --compile "packages/backend/src/bun.index.ts" --outfile dist/nordcraft
+
 
 FROM gcr.io/distroless/base-debian12
 WORKDIR /app
